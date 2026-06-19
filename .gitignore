@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Build
+build/
+
+# Environment variables — NUNCA commitear
+.env
+.env.local
+.env.production
+
+# Scripts de desarrollo
+scripts/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Puppeteer (solo se usa para generar la OG image)
+.puppeteer_state
