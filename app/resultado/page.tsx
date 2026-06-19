@@ -187,8 +187,19 @@ function Dashboard({ score, businessName }: { score: number; businessName: strin
     }).catch((e) => console.error('[lead save]', e))
 
     const pct = (q: string) => Math.round(((answers[q] ?? 0) / 10) * 100)
+
+    const speedRaw  = localStorage.getItem('diagnostico_pagespeed')
+    const speedData = speedRaw ? JSON.parse(speedRaw) : null
+
     setCategories(MOCK_CATEGORIES.map((cat) => {
       switch (cat.id) {
+        case 'speed': {
+          if (!speedData) return cat
+          const detail = speedData.lcp
+            ? `PageSpeed mobile: ${speedData.score}/100 · LCP ${speedData.lcp}`
+            : `PageSpeed mobile: ${speedData.score}/100`
+          return { ...cat, score: speedData.score, detail }
+        }
         case 'social':    return { ...cat, score: pct('q1') }
         case 'attention': return { ...cat, score: pct('q2') }
         case 'booking':   return { ...cat, score: pct('q3') }

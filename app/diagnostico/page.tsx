@@ -82,6 +82,20 @@ export default function DiagnosticoPage() {
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
 
+  // Lanzar PageSpeed en background mientras el usuario ve la animación
+  useEffect(() => {
+    const formRaw = localStorage.getItem('diagnostico_form')
+    if (!formRaw) return
+    let websiteUrl: string
+    try { websiteUrl = JSON.parse(formRaw).websiteUrl } catch { return }
+    if (!websiteUrl) return
+
+    fetch(`/api/pagespeed?url=${encodeURIComponent(websiteUrl)}`)
+      .then((r) => r.json())
+      .then((data) => localStorage.setItem('diagnostico_pagespeed', JSON.stringify(data)))
+      .catch(() => {})
+  }, [])
+
   // Fase de loading: avanzar pasos cada ~900ms
   useEffect(() => {
     if (phase !== 'loading') return
