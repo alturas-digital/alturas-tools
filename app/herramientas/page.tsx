@@ -39,9 +39,6 @@ export default function HerramientasPage() {
             <Link href="/herramientas" className="text-xs text-teal font-medium">
               Herramientas
             </Link>
-            <Link href="/blog" className="text-xs text-gray-500 hover:text-white transition-colors">
-              Blog
-            </Link>
           </div>
         </div>
       </nav>
