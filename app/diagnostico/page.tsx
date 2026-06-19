@@ -82,8 +82,9 @@ export default function DiagnosticoPage() {
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
 
-  // Lanzar PageSpeed en background mientras el usuario ve la animación
+  // Lanzar PageSpeed en background (solo si no viene ya el score de /velocidad)
   useEffect(() => {
+    if (localStorage.getItem('diagnostico_pagespeed')) return
     const formRaw = localStorage.getItem('diagnostico_form')
     if (!formRaw) return
     let websiteUrl: string
@@ -96,9 +97,14 @@ export default function DiagnosticoPage() {
       .catch(() => {})
   }, [])
 
-  // Fase de loading: avanzar pasos cada ~900ms
+  // Fase de loading: avanzar pasos o saltar si viene de /velocidad
   useEffect(() => {
-    if (phase !== 'loading') return
+    const skip = localStorage.getItem('diagnostico_skip_loading')
+    if (skip) {
+      localStorage.removeItem('diagnostico_skip_loading')
+      setPhase('questions')
+      return
+    }
 
     let step = 0
     const interval = setInterval(() => {
@@ -113,7 +119,7 @@ export default function DiagnosticoPage() {
     }, 900)
 
     return () => clearInterval(interval)
-  }, [phase])
+  }, [])
 
   function selectAnswer(questionId: string, points: number) {
     const updated = { ...answers, [questionId]: points }
