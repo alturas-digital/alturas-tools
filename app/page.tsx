@@ -533,6 +533,28 @@ function HeroContent() {
           </div>
         </section>
 
+        {/* ── Quiénes somos ─────────────────────────────────────────────── */}
+        <section className="border-t border-border/40 py-14">
+          <div className="max-w-2xl mx-auto px-4 text-center">
+            <h2 className="text-xl font-bold mb-4">¿Quién hizo esta herramienta?</h2>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-lg mx-auto">
+              Este diagnóstico es un producto gratuito de{' '}
+              <a
+                href="https://alturas-digital.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal hover:underline"
+              >
+                Alturas Digital
+              </a>
+              , agencia de marketing digital especializada exclusivamente en turismo. Trabajamos
+              con operadores turísticos de toda Latinoamérica ayudándolos a mejorar su presencia
+              online y capturar más reservas. Esta herramienta es nuestra forma de aportar valor
+              a la industria antes de cualquier conversación comercial.
+            </p>
+          </div>
+        </section>
+
         {/* ── Footer global ──────────────────────────────────────────────── */}
         <footer className="border-t border-border/40 py-8">
           <div className="max-w-2xl mx-auto px-4 text-center">

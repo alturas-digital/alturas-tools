@@ -205,10 +205,11 @@ export default function DiagnosticoPage() {
   const question = QUESTIONS[currentQ]
 
   return (
-    <main className="min-h-screen bg-bg flex items-center justify-center px-4">
+    <main className="min-h-screen bg-bg flex flex-col">
       {/* Glow */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-teal/4 rounded-full blur-[120px] pointer-events-none" />
 
+      <div className="flex-1 flex items-center justify-center px-4 py-8">
       <div className="relative w-full max-w-lg">
         {/* Indicador de progreso */}
         <div className="flex items-center justify-between mb-6">
@@ -271,6 +272,19 @@ export default function DiagnosticoPage() {
           </motion.div>
         </AnimatePresence>
       </div>
+      </div>
+
+      <p className="text-center text-gray-600 text-xs py-4">
+        Una herramienta gratuita de{' '}
+        <a
+          href="https://alturas-digital.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-teal/70 hover:text-teal transition-colors"
+        >
+          Alturas Digital
+        </a>
+      </p>
     </main>
   )
 }
